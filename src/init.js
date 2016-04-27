@@ -33,12 +33,12 @@ $(document).ready(function() {
 
   $('.line').on('click', function(event) {
     for (var i = 0; i < window.dancers.length; i++) {
-      if (window.dancers[i].hasClass('coyote')) {
-        window.dancers[i].animate({
+      if (window.dancers[i].$node.hasClass('coyote')) {
+        window.dancers[i].$node.animate({
           'left': '10%',
         });
-      } else if (window.dancers[i].hasClass('roadRunner')) {
-        window.dancers[i].animate({
+      } else if (window.dancers[i].$node.hasClass('roadRunner')) {
+        window.dancers[i].$node.animate({
           'left': '90%',
         });
       }
