@@ -19,11 +19,3 @@ makeDancer.prototype.setPosition = function(top, left) {
   this.$node.css(styleSettings);
 };
 
-$('.line').on('click', function(event) {
-  $('.coyote').css({
-    'left': '-350px'
-  });
-  $('.roadRunner').css({
-    'right': '-50px'
-  });
-});

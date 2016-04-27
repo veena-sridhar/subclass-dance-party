@@ -28,17 +28,21 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
-    //window.dancers.push(dancer.$node);
+    window.dancers.push(dancer);
   });
 
   $('.line').on('click', function(event) {
-    event.stopPropagation();
-    $('.roadRunner').animate({
-      'left': '85%',
-    });
-    $('.coyote').animate({
-      'left': '15%'
-    });
+    for (var i = 0; i < window.dancers.length; i++) {
+      if (window.dancers[i].hasClass('coyote')) {
+        window.dancers[i].animate({
+          'left': '10%',
+        });
+      } else if (window.dancers[i].hasClass('roadRunner')) {
+        window.dancers[i].animate({
+          'left': '90%',
+        });
+      }
+    }
   }); 
   
   var playMusic = function () {
@@ -53,14 +57,22 @@ $(document).ready(function() {
   }, 35000);
 
   var killCoyote = function() {
-    var $anvil = $('.anvil').position();
-    var $coyote = $('.coyote').position();
-    if ($anvil.left + 100 <= $coyote.left || $anvil.left - 100 <= $coyote.left) {
-      $('.coyote').remove();
+    for (var i = 0; i < dancers.length; i++) {
+      if (dancers[i].constructor === makeAnvil) {
+        var $anvil = dancers[i].$node.offset();    
+      }
+    }
+    for (i = 0; i < dancers.length; i++) {
+      if (dancers[i].constructor === makeWileECoyote) {
+        var $coyote = dancers[i].$node.offset();
+        if ($anvil.left + 25 <= $coyote.left || $anvil.left - 25 <= $coyote.left) {
+          dancers[i].$node.remove();
+        }
+      }
     }
   };
 
-  killCoyote();
+  setInterval(killCoyote, 200);
 
 });
 
